@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="pager" th:if="${pageInfo.pages > 0}" class="col-sm-6 pager" style="float:right; overflow:hidden;">
+    <input type="hidden" th:value="${pageInfo.pageNum}" name="currentPage" id="currentPage"/>
+    <!--非最后一页情况-->
+    <div th:if="${not (pageInfo.pageNum == pageInfo.pages)}">
+        <div class="dataTables_paginate paging_simple_numbers"
+             id="editable_paginate" style=" text-align:right;">
+            <ul class="pagination" style=" margin:0;">
+                <li th:classappend="${!pageInfo.hasPreviousPage} ? 'disabled'"
+                    class="paginate_button previous"
+                    aria-controls="editable" tabindex="0" id="editable_previous">
+                    <a href="javascript:void(0);">上一页</a>
+                </li>
+                <li th:each="index: ${#numbers.sequence(pageInfo.pageNum - 4 lt 1 ? 1 : pageInfo.pageNum - 4, pageInfo.pageNum)}"
+                    th:classappend="${pageInfo.pageNum == index} ? 'active'"
+                    class="pageItem paginate_button" aria-controls="editable">
+                    <a href="javascript:void(0);" th:text="${index}">1</a>
+                </li>
+
+                <li th:each="index: ${#numbers.sequence(pageInfo.pageNum + 1,pageInfo.pageNum + 4 gt pageInfo.pages ? pageInfo.pages : pageInfo.pageNum + 4)}"
+                    class="pageItem paginate_button" aria-controls="editable">
+                    <a href="javascript:void(0);" th:text="${index}">1</a>
+                </li>
+
+                <li th:classappend="${!pageInfo.hasNextPage} ? 'disabled'"
+                    class="paginate_button next"
+                    aria-controls="editable" tabindex="0" id="editable_next">
+                    <a href="javascript:void(0);">下一页</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- 最后一页情况-->
+    <div th:if="${pageInfo.pageNum == pageInfo.pages}">
+        <div class="dataTables_paginate paging_simple_numbers"
+             id="editable_paginate" style=" text-align:right;">
+            <ul class="pagination" style=" margin:0;">
+                <li th:classappend="${!pageInfo.hasPreviousPage} ? 'disabled'"
+                    class="paginate_button previous"
+                    aria-controls="editable" tabindex="0" id="editable_previous">
+                    <a href="javascript:void(0);">上一页</a>
+                </li>
+                <li th:each="index: ${#numbers.sequence(pageInfo.pageNum - 4 lt 1 ? 1 : pageInfo.pageNum - 4, pageInfo.pageNum)}"
+                    th:classappend="${pageInfo.pageNum == index} ? 'active'"
+                    class="pageItem paginate_button" aria-controls="editable">
+                    <a href="javascript:void(0);" th:text="${index}">1</a>
+                </li>
+                <li th:classappend="${!pageInfo.hasNextPage} ? 'disabled'"
+                    class="paginate_button next"
+                    aria-controls="editable" tabindex="0" id="editable_next">
+                    <a href="javascript:void(0);">下一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</html>

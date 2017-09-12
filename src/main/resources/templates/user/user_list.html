@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+
+    <script src="/plugins/jquery-2.2.4.min.js"></script>
+    <script src="/js/page.js"></script>
+
+
+    <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css"/>
+
+    <script>
+        function deleteUser(username) {
+            window.location.href = '/user/delete?username=' + username;
+        }
+    </script>
+</head>
+<body>
+
+<form id="ff" action="/user/save">
+    用户名：
+    <input type="text" value="" name="username"/>
+    密码：
+    <input type="text" value="" name="password"/>
+    <input type="button" value="新增/修改" onclick="document.getElementById('ff').submit()"/>
+</form>
+
+<form id="searchForm" action="/user/list"></form>
+
+
+<table class="table">
+    <tr>
+        <td>
+            用户名
+        </td>
+        <td>
+            密码
+        </td>
+        <td>
+            操作
+        </td>
+    </tr>
+
+    <tr th:each="item : ${pageInfo.list}">
+        <td th:text="${item.username}">lhp</td>
+        <td th:text="${item.password}">123456</td>
+        <td><input type="button" value="删除" th:onclick="'deleteUser(\'' + ${item.username} +'\')'"/></td>
+    </tr>
+</table>
+
+<div th:replace="common/page :: pager"></div>
+
+</body>
+</html>
