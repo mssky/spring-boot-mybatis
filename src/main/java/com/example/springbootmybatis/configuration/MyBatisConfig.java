@@ -33,7 +33,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(druidDataSource);
         //这个可以设置，设置好包后，在mapper使用实体类时，不再需要写类的前缀。
-//        bean.setTypeAliasesPackage("tk.mybatis.springboot.model");
+//        bean.setTypeAliasesPackage("com.example.springbootmybatis.model");
 
         //分页插件
         PageHelper pageHelper = new PageHelper();
@@ -51,7 +51,6 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         //采用annotation方式时，注释掉下面两行(建议采用mapper的方式，相对灵活些)
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
-
 
         //设置自动映射
         bean.getObject().getConfiguration().setMapUnderscoreToCamelCase(true);
