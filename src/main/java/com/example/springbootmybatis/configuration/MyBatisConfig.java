@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -46,8 +48,9 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
         bean.setPlugins(new Interceptor[]{pageHelper});
 
         //添加XML目录
-//        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-//        bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
+        //采用annotation方式时，注释掉下面两行(建议采用mapper的方式，相对灵活些)
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));
 
 
         //设置自动映射

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springbootmybatis.dao.IUserDao">
+
+    <select id="findOne" resultType="com.example.springbootmybatis.model.User">
+        select * from a_user where username=#{username}
+    </select>
+
+    <select id="listUser" resultType="com.example.springbootmybatis.model.User">
+        select * from a_user order by username
+    </select>
+
+    <update id="updateUser">
+        update a_user set password = #{password} where username=#{username}
+    </update>
+
+    <insert id="insertUser">
+        insert into a_user(username,password) values (#{username},#{password})
+    </insert>
+
+    <delete id="deleteUser">
+        delete from a_user where username=#{username}
+    </delete>
+
+
+</mapper>
