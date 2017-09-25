@@ -5,7 +5,7 @@ Demo project for Spring Boot Mybatis
 
 ## 项目使用相关
 >1. spring-boot-web
->2. mybatic
+>2. mybatis
 >3. pagehelper
 >4. hikari
 >5. mysql
