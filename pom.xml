@@ -45,14 +45,6 @@
             <version>2.6.1</version>
         </dependency>
 
-        <!-- pg的jdbc -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.3-1102-jdbc41</version>
-        </dependency>
-
-        <!-- mysql的jdbc -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
